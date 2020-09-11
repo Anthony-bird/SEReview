@@ -1,6 +1,5 @@
 package com.feng._方法;
 
-import java.net.Socket;
 
 public class MethodDemo {
     public static void main(String[] args) {

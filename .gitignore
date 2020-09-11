@@ -10,3 +10,5 @@ JavaSEProject/.idea/smartfox_info.xml
 JavaSEProject/.idea/workspace.xml
 *.class
 JavaSEProject/SEReview/SEReview.iml
+JavaSEProject/.idea/uiDesigner.xml
+JavaSEProject/out/production/SEReview/META-INF/SEReview.kotlin_module

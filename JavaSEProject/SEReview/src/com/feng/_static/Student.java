@@ -1,0 +1,11 @@
+package com.feng._static;
+
+public class Student {
+    public int age;
+    public String name;
+    public static String university;
+
+    public void show(){
+        System.out.println(name+","+age+","+university);
+    }
+}

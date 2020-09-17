@@ -1,0 +1,42 @@
+package com.feng._集合案例;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+/**
+ * List集合储存学生对象三种遍历方式
+ *    迭代器
+ *    普通for
+ *    增强for
+ *    */
+public class ListDemo02 {
+    public static void main(String[] args) {
+        List<Student> list = new ArrayList<>();
+
+        Student s1 = new Student("林青霞", 30);
+        Student s2 = new Student("露娜", 18);
+        Student s3 = new Student("猴子", 22);
+
+        list.add(s1);
+        list.add(s2);
+        list.add(s3);
+
+        Iterator<Student> it = list.iterator();
+        while (it.hasNext()) {
+            Student s = it.next();
+            System.out.println(s.getName() + "," + s.getAge());
+        }
+        System.out.println("--------");
+
+        for (int i=0;i<list.size();i++){
+            Student s = list.get(i);
+            System.out.println(s.getName() + "," + s.getAge());
+        }
+
+        System.out.println("--------");
+
+        for (Student s : list) {
+            System.out.println(s.getName() + "," + s.getAge());
+        }
+    }
+}

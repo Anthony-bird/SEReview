@@ -1,6 +1,6 @@
-package com.feng._集合Set;
+package com.feng._Map集合;
 
-public class Student implements Comparable<Student> {
+public class Student {
     private String name;
     private int age;
 
@@ -44,14 +44,5 @@ public class Student implements Comparable<Student> {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + age;
         return result;
-    }
-
-    @Override
-    public int compareTo(Student s) {
-        int num = this.age - s.age;
-//        int num = s.age - this.age;
-
-        int num2 = num == 0 ? this.name.compareTo(s.name) : num;
-        return num2;
     }
 }

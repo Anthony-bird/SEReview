@@ -27,6 +27,17 @@ public class RequestExecute extends Thread{
             out = socket.getOutputStream();
             pw = new PrintWriter(out);
 
+            //先判断服务器是否处于暂停状态
+            if (Data.isPush){
+                pw.println("HTTP/1.1 200 OK");//输出响应行
+                pw.println("Content-Type:text/html;charset=utf-8");
+                //输出空行
+                pw.println("");//表示响应头结束，开始响应内容
+                pw.write("<h2>欢迎访问Mini-Server1.0</h2>");
+                pw.write("<h2>服务器目前处于暂停状态,请你稍后再试！</h2>");
+                pw.flush();
+                return;
+            }
             in=socket.getInputStream();
             reader=new InputStreamReader(in);
             bufferedReader=new BufferedReader(reader);
@@ -80,6 +91,7 @@ public class RequestExecute extends Thread{
                             //判断文件是否存在
                             File file = new File(Data.resourcePath + reqPath);
                             if (file.exists() && file.isFile()){
+                                //将文件响应到客服端
                                 response200(out,file.getAbsolutePath(),ext);
                             } else {
                                 response404(out);
@@ -163,14 +175,15 @@ public class RequestExecute extends Thread{
                 pw=new PrintWriter(out);
                 pw.println("HTTP/1.1 200 OK");//输出响应行
                 if (ext.equals("html"))
-                    out.write("Content-Type:text/html;charset=utf-8\r\n".getBytes());
+                    pw.println("Content-Type:text/html;charset=utf-8");
                 else if (ext.equals("js"))
-                    out.write("Content-Type:application/x-javascript\r\n".getBytes());
+                    pw.println("Content-Type:application/x-javascript");
                 else if (ext.equals("css"))
-                    out.write("Content-Type:text/css\r\n".getBytes());
+                    pw.println("Content-Type:text/css");
                 else if (ext.equals("json"))
-                    out.write("Content-Type:application/json;charset=utf-8\r\n".getBytes());
+                    pw.println("Content-Type:application/json;charset=utf-8");
                 //输出空行表示响应结束
+                pw.println();
                 //初始化输入流
                 in =new FileInputStream(filePath);
                 reader=new InputStreamReader(in);
@@ -183,7 +196,7 @@ public class RequestExecute extends Thread{
             } else {
                 response404(out);
             }
-            pw.println("Content-Type:text/html;charset=utf-8");
+
 
         }catch (Exception e){
             e.printStackTrace();
